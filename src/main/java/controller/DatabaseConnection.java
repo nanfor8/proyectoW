@@ -15,6 +15,14 @@ public class DatabaseConnection {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("✅ Conexión exitosa a MySQL remoto (Aiven)");
+            // Crear tabla si no existe
+            try (Statement stmt = conn.createStatement()) {
+                String sql = "CREATE TABLE IF NOT EXISTS persona (" +
+                             "nombre VARCHAR(100) PRIMARY KEY," +
+                             "edad INT)";
+                stmt.execute(sql);
+                System.out.println("✅ Tabla 'persona' creada o ya existente.");
+            }
         } catch (ClassNotFoundException e) {
             System.err.println("❌ No se encontró el driver MySQL JDBC.");
             e.printStackTrace();
