@@ -1,14 +1,14 @@
-# Usa Tomcat 10 con Java 17 (imagen oficial)
+# Imagen base: Tomcat 10 + JDK 17
 FROM tomcat:10.1-jdk17-temurin
 
-# Borra la aplicación por defecto de Tomcat
+# Eliminar la app por defecto de Tomcat
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copia tu WAR con el nombre ROOT para que sea la app principal
+# Copiar el WAR del proyecto como ROOT
 COPY target/proyectoW.war /usr/local/tomcat/webapps/ROOT.war
 
-# Expón el puerto estándar
+# Exponer el puerto 8080
 EXPOSE 8080
 
-# Mantén Tomcat corriendo en primer plano
-CMD ["catalina.sh", "run"]
+# Mantener Tomcat corriendo en primer plano
+ENTRYPOINT ["catalina.sh", "run"]
