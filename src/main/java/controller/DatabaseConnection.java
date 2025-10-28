@@ -6,17 +6,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseConnection {
-    private static final String URL =
-        "jdbc:mysql://mysql-2dcd634a-nanfor8-ba72.f.aivencloud.com:12016/defaultdb?useSSL=true&requireSSL=true&sslMode=REQUIRED";
-    private static final String USER = "avnadmin";
-    private static final String PASSWORD = "AVNS_AR1pXMkx4vHFn67C6uD";
+
+    // Datos de tu base FreeSQLDatabase.com
+    private static final String URL = "jdbc:mysql://sql5.freesqldatabase.com:3306/sql5804907";
+    private static final String USER = "sql5804907";
+    private static final String PASSWORD = "HiWWeMp8p3V";
 
     public static Connection getConnection() {
         Connection conn = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("✅ Conexión exitosa con la base de datos Aiven.");
+            System.out.println("✅ Conexión exitosa a FreeSQLDatabase.com");
 
             // Crear tabla si no existe
             try (Statement stmt = conn.createStatement()) {
@@ -27,13 +28,11 @@ public class DatabaseConnection {
                 System.out.println("✅ Tabla 'persona' creada o ya existente.");
             }
 
-        } catch (ClassNotFoundException e) {
-            System.err.println("❌ No se encontró el driver MySQL JDBC.");
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println("❌ Error al conectar o crear tabla:");
             e.printStackTrace();
         }
         return conn;
     }
 }
+
