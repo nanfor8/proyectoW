@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://mysql-2dcd634a-nanfor8-ba72.f.aivencloud.com:12016/defaultdb?useSSL=true&requireSSL=true";
+    private static final String URL =
+        "jdbc:mysql://mysql-2dcd634a-nanfor8-ba72.f.aivencloud.com:12016/defaultdb?useSSL=true&requireSSL=true&sslMode=REQUIRED";
     private static final String USER = "avnadmin";
     private static final String PASSWORD = "AVNS_AR1pXMkx4vHFn67C6uD";
 
@@ -15,9 +16,9 @@ public class DatabaseConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("✅ Conexión exitosa a la base de datos Aiven.");
+            System.out.println("✅ Conexión exitosa con la base de datos Aiven.");
 
-            // Crear tabla automáticamente si no existe
+            // Crear tabla si no existe
             try (Statement stmt = conn.createStatement()) {
                 String sql = "CREATE TABLE IF NOT EXISTS persona (" +
                              "nombre VARCHAR(100) PRIMARY KEY," +
@@ -30,7 +31,7 @@ public class DatabaseConnection {
             System.err.println("❌ No se encontró el driver MySQL JDBC.");
             e.printStackTrace();
         } catch (SQLException e) {
-            System.err.println("❌ Error de conexión o SQL:");
+            System.err.println("❌ Error al conectar o crear tabla:");
             e.printStackTrace();
         }
         return conn;
