@@ -7,8 +7,7 @@ import java.sql.Statement;
 
 public class DatabaseConnection {
 
-    // Datos de tu base FreeSQLDatabase.com
-    private static final String URL = "jdbc:mysql://sql5.freesqldatabase.com:3306/sql5804907";
+    private static final String URL = "jdbc:mysql://sql5.freesqldatabase.com:3306/sql5804907?useSSL=false&allowPublicKeyRetrieval=true";
     private static final String USER = "sql5804907";
     private static final String PASSWORD = "HiWWeMp8p3V";
 
@@ -19,7 +18,6 @@ public class DatabaseConnection {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("✅ Conexión exitosa a FreeSQLDatabase.com");
 
-            // Crear tabla si no existe
             try (Statement stmt = conn.createStatement()) {
                 String sql = "CREATE TABLE IF NOT EXISTS persona (" +
                              "nombre VARCHAR(100) PRIMARY KEY," +
@@ -35,4 +33,3 @@ public class DatabaseConnection {
         return conn;
     }
 }
-
