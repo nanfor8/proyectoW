@@ -9,7 +9,6 @@ public class DatabaseConnection {
     private static final String URL =
         "jdbc:mysql://brz591l3z0lepartaljr-mysql.services.clever-cloud.com:3306/brz591l3z0lepartaljr"
         + "?useSSL=false"
-        + "&requireSSL=false"
         + "&allowPublicKeyRetrieval=true"
         + "&connectTimeout=10000"
         + "&socketTimeout=10000";
@@ -20,7 +19,7 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         try {
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("✅ Conectado exitosamente a Clever Cloud!");
+            System.out.println("✅ Conectado exitosamente a la base de datos Clever Cloud.");
             return conn;
         } catch (SQLException e) {
             System.err.println("❌ Error al conectar con la base de datos: " + e.getMessage());
