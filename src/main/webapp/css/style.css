@@ -1,0 +1,19 @@
+a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+    color: #1e40af;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #1d4ed8;
+}
+
+a:visited {
+    color: #2563eb;
+}
