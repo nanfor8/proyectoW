@@ -18,26 +18,30 @@
 
     <hr>
 
-    <!-- Mostrar resultado si existe -->
-    <%
-        Persona persona = (Persona) request.getAttribute("persona");
-        if (persona != null) {
-    %>
-        <h3>Resultado:</h3>
-        <p><strong>Nombre:</strong> <%= persona.getNombre() %></p>
-        <p><strong>Edad:</strong> <%= persona.getEdad() %></p>
-    <%
-        } else if (request.getParameter("nombre") != null) {
-    %>
-        <p>No se encontró persona con ese nombre.</p>
-    <%
-        }
-    %>
+    <div class="section">
 
-    <br>
-    <br><br>
-    <a href="<%= request.getContextPath() %>/index.jsp">
-        <button>🏠 Menú Principal</button>
+    <% if (request.getAttribute("persona") != null) { %>
+        <div class="result-box">
+            <h3>✨ Resultado encontrado</h3>
+    
+            <div class="result-item">
+                👤 Nombre: ${persona.nombre}
+            </div>
+    
+            <div class="result-item">
+                🎂 Edad: ${persona.edad}
+            </div>
+        </div>
+    <% } else if (request.getParameter("nombre") != null) { %>
+        <div class="result-empty">
+            ❌ No se encontró la persona
+        </div>
+    <% } %>
+    
+    </div>
+    
+    <a class="menu-btn" href="<%= request.getContextPath() %>/index.jsp">
+        🏠 Menú Principal
     </a>
 
 </body>
