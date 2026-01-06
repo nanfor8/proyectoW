@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Buscar Persona</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
     <h2>Buscar Persona</h2>
