@@ -47,60 +47,63 @@ public class PersonaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+    
         String action = request.getParameter("action");
-
+    
         try {
-            // ✅ 1. Agregar persona
+            // ✅ 1. Agregar persona (por defecto)
             if (action == null || "agregar".equals(action)) {
                 String nombre = request.getParameter("nombre");
                 int edad = Integer.parseInt(request.getParameter("edad"));
                 Persona p = new Persona(nombre, edad);
-
+    
                 boolean ok = controller.agregarPersona(p);
                 if (ok) {
                     response.sendRedirect(request.getContextPath() + "/persona?action=listar");
                 } else {
                     response.getWriter().println("Error al agregar persona.");
                 }
-        }catch (Exception e) {
-            System.out.println("=== ERROR DB INSERT ===");
-            e.printStackTrace(); 
-            throw e; 
-        }
-
+            }
+    
             // ✅ 2. Actualizar edad
             else if ("actualizar".equals(action)) {
                 String nombre = request.getParameter("nombre");
                 int nuevaEdad = Integer.parseInt(request.getParameter("edad"));
-
+    
                 boolean actualizado = controller.actualizarEdad(nombre, nuevaEdad);
                 if (actualizado) {
                     request.setAttribute("mensaje", "Edad actualizada correctamente para " + nombre);
                 } else {
                     request.setAttribute("mensaje", "No se encontró persona con el nombre: " + nombre);
                 }
-
+    
                 RequestDispatcher rd = request.getRequestDispatcher("persona/actualizar.jsp");
                 rd.forward(request, response);
             }
-
+    
             // ✅ 3. Eliminar persona
             else if ("eliminar".equals(action)) {
                 String nombre = request.getParameter("nombre");
                 boolean eliminado = controller.eliminarPersona(nombre);
-
+    
                 if (eliminado) {
                     request.setAttribute("mensaje", "Persona eliminada correctamente: " + nombre);
                 } else {
                     request.setAttribute("mensaje", "No se encontró persona con el nombre: " + nombre);
                 }
-
+    
                 RequestDispatcher rd = request.getRequestDispatcher("persona/eliminar.jsp");
                 rd.forward(request, response);
             }
+    
+            else {
+                response.getWriter().println("Acción no válida: " + action);
+            }
+    
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("=== ERROR EN PersonaServlet.doPost action=" + action + " ===");
+            e.printStackTrace();   // <-- ESTO debe aparecer en Render logs
+            response.setStatus(500);
             response.getWriter().println("Error general al procesar la solicitud.");
         }
     }
