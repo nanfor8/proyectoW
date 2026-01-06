@@ -1,7 +1,7 @@
 <%@ page import="model.Persona" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 <h2>Listado de Personas</h2>
 
 <table border="1">
