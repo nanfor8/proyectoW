@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Eliminar Persona</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
     <h2>Eliminar Persona</h2>
