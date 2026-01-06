@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Actualizar Edad</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
     <h2>Actualizar Edad de Persona</h2>
