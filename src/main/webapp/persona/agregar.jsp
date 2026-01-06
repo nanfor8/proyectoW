@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Agregar Persona</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
     <h2>Agregar Persona</h2>
