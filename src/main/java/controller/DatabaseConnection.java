@@ -16,7 +16,18 @@ public class DatabaseConnection {
             throw new SQLException("Missing DB env vars. Required: DB_URL, DB_USER, DB_PASSWORD");
         }
 
-        // PostgreSQL JDBC driver se auto-registra (no necesitas Class.forName).
+        // Debug seguro (no imprime password)
+        System.out.println("DB_URL=" + url);
+        System.out.println("DB_USER=" + user);
+
+        // Fuerza driver PostgreSQL (evita confusiones)
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("PostgreSQL Driver not found in classpath.", e);
+        }
+
         return DriverManager.getConnection(url, user, password);
     }
 }
+
