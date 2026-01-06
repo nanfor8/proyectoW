@@ -1,5 +1,4 @@
 package controller;
-
 import java.io.IOException;
 import java.util.List;
 import jakarta.servlet.RequestDispatcher;
@@ -64,7 +63,11 @@ public class PersonaServlet extends HttpServlet {
                 } else {
                     response.getWriter().println("Error al agregar persona.");
                 }
-            }
+        }catch (Exception e) {
+            System.out.println("=== ERROR DB INSERT ===");
+            e.printStackTrace(); 
+            throw e; 
+        }
 
             // ✅ 2. Actualizar edad
             else if ("actualizar".equals(action)) {
