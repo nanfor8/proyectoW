@@ -14,12 +14,16 @@ public class PersonaController {
 
     public boolean agregarPersona(Persona p) {
         String sql = "INSERT INTO persona(nombre, edad) VALUES (?, ?)";
+    
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, p.getNombre());
-            stmt.setInt(2, p.getEdad());
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
+             var ps = conn.prepareStatement(sql)) {
+    
+            ps.setString(1, p.getNombre());
+            ps.setInt(2, p.getEdad());
+            return ps.executeUpdate() > 0;
+    
+        } catch (Exception e) {
+            System.out.println("❌ Error al conectar con la base de datos:");
             e.printStackTrace();
             return false;
         }
