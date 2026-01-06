@@ -1,19 +1,212 @@
+/* ================================
+   FUENTE GLOBAL
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@300;600;800&display=swap');
+
+/* ================================
+   RESET + BODY
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(270deg, #ff0080, #7928ca, #2afadf);
+    background-size: 600% 600%;
+    animation: gradientMove 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+/* Fondo animado */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ================================
+   CONTENEDOR CENTRAL
+================================ */
+.container {
+    background: rgba(0,0,0,0.55);
+    padding: 40px 60px;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    text-align: center;
+    width: 90%;
+    max-width: 900px;
+    animation: popIn 0.8s ease;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ================================
+   TÍTULOS
+================================ */
+h1, h2, h3 {
+    font-family: 'Luckiest Guy', cursive;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    text-shadow: 3px 3px 0 #000;
+}
+
+h1 {
+    font-size: 3.5rem;
+    color: #ffeb3b;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #00e5ff;
+}
+
+/* ================================
+   LINKS (MENÚ)
+================================ */
+ul {
+    list-style: none;
+}
+
+li {
+    margin: 18px 0;
+}
+
 a {
-    color: #2563eb;
+    display: inline-block;
+    padding: 18px 35px;
+    font-size: 1.4rem;
+    font-weight: 800;
     text-decoration: none;
-    font-weight: 500;
-    transition: all 0.2s ease-in-out;
+    color: #fff;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Iconos sin imágenes */
+a::before {
+    content: "🚀 ";
 }
 
 a:hover {
-    color: #1e40af;
-    text-decoration: underline;
+    transform: scale(1.15) rotate(-1deg);
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
 }
 
-a:active {
-    color: #1d4ed8;
+/* ================================
+   FORMULARIOS
+================================ */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-a:visited {
-    color: #2563eb;
+input[type="text"],
+input[type="number"] {
+    padding: 18px;
+    font-size: 1.3rem;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    text-align: center;
+    background: #fff;
+    color: #000;
+}
+
+input:focus {
+    transform: scale(1.05);
+}
+
+/* ================================
+   BOTONES
+================================ */
+button {
+    padding: 18px;
+    font-size: 1.4rem;
+    font-weight: 900;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #00f260, #0575e6);
+    color: #000;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+button:hover {
+    transform: scale(1.15);
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+}
+
+/* ================================
+   TABLAS
+================================ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    font-size: 1.2rem;
+}
+
+th, td {
+    padding: 15px;
+    border-radius: 10px;
+}
+
+th {
+    background: #ff9800;
+    color: #000;
+}
+
+td {
+    background: rgba(255,255,255,0.9);
+    color: #000;
+}
+
+tr:hover td {
+    background: #00e5ff;
+    transform: scale(1.02);
+}
+
+/* ================================
+   MENSAJES
+================================ */
+.success {
+    color: #00ff99;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.error {
+    color: #ff1744;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    a { font-size: 1.2rem; padding: 15px 25px; }
 }
