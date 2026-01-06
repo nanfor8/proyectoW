@@ -1,8 +1,10 @@
 <%@ page import="model.Persona" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
-<h2>Listado de Personas</h2>
+<head>
+    <title>Lista Persona</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+</head>
 
 <table border="1">
   <tr>
