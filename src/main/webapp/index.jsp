@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Menú Principal</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
     <h1>Menú Principal</h1>
