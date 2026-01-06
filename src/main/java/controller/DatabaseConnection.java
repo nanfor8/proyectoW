@@ -6,23 +6,17 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    private static final String URL =
-        "jdbc:mysql://gondola.proxy.rlwy.net:56194/railway"
-        + "?sslMode=REQUIRED"
-        + "&serverTimezone=UTC";
+    public static Connection getConnection() throws SQLException {
 
-    private static final String USER = "root";
-    private static final String PASSWORD = "iRvUaaLhNMEYLmYQbmWuNbOOKoqxDvO";
+        String url = System.getenv("DB_URL");
+        String user = System.getenv("DB_USER");
+        String password = System.getenv("DB_PASSWORD");
 
-    public static Connection getConnection() {
-        try {
-            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("✅ Conexión exitosa a MySQL Railway");
-            return conn;
-        } catch (SQLException e) {
-            System.out.println("❌ Error al conectar con la base de datos: " + e.getMessage());
-            e.printStackTrace();
-            return null;
+        if (url == null || user == null || password == null) {
+            throw new SQLException("Missing DB env vars. Required: DB_URL, DB_USER, DB_PASSWORD");
         }
+
+        // PostgreSQL JDBC driver se auto-registra (no necesitas Class.forName).
+        return DriverManager.getConnection(url, user, password);
     }
 }
